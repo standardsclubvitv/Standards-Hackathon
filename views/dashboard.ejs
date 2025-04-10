@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style2.css">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+        }
+
+        .success,
+        .error {
+            padding: 0.7rem 1rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        #team-status {
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            padding: 8px 20px;
+            background: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="logout-button" href="/logout">Logout</a>
+
+    <div class="section container">
+        <h2 class="section-title">Welcome, <%= user.name %>!</h2>
+        <p class="section-subtitle">Email: <%= user.email %> | Reg No: <%= user.regno %>
+        </p>
+    </div>
+
+    <% if (query.submitted) { %>
+        <div class="dashboard-container success">
+            <h4>✅ Project submitted successfully!</h4>
+            <p>You can review your submitted links below. If there's any mistake, please email <a
+                    href="mailto:standardsclub@vit.ac.in">standardsclub@vit.ac.in</a>.</p>
+        </div>
+        <% } %>
+
+            <% if (user.team) { %>
+                <div class="dashboard-container">
+                    <h3>Your Team: <%= user.team.name %>
+                    </h3>
+                    <p><strong>Track:</strong>
+                        <%= user.team.track %>
+                    </p>
+                    <p><strong>Idea:</strong>
+                        <%= user.team.idea %>
+                    </p>
+                    <p><strong>Status:</strong>
+                        <%= user.team.status %>
+                    </p>
+                    <h4>Members:</h4>
+                    <ul>
+                        <% user.team.members.forEach(function(member) { %>
+                            <li>
+                                <%= member.regno %>
+                            </li>
+                            <% }); %>
+                    </ul>
+
+                    <% if (user.team.github || user.team.linkedin || user.team.document) { %>
+                        <h4>Submitted Project Links:</h4>
+                        <ul>
+                            <% if (user.team.github) { %>
+                                <li><strong>GitHub:</strong> <a href="<%= user.team.github %>" target="_blank">
+                                        <%= user.team.github %>
+                                    </a></li>
+                                <% } %>
+                                    <% if (user.team.linkedin) { %>
+                                        <li><strong>LinkedIn:</strong> <a href="<%= user.team.linkedin %>"
+                                                target="_blank">
+                                                <%= user.team.linkedin %>
+                                            </a></li>
+                                        <% } %>
+                                            <% if (user.team.document) { %>
+                                                <li><strong>Google Sheet:</strong> <a href="<%= user.team.document %>"
+                                                        target="_blank">
+                                                        <%= user.team.document %>
+                                                    </a></li>
+                                                <% } %>
+                        </ul>
+                        <% } %>
+                </div>
+                <% } else { %>
+
+                    <!-- Container 1: Team Creation -->
+                    <div class="dashboard-container">
+                        <h3>Create Your Team (3–5 Members Total Including You)</h3>
+                        <form id="teamForm" action="/create-team" method="POST" onsubmit="return validateTeamSize()">
+                            <div class="form-group">
+                                <label>Team Name:</label>
+                                <input type="text" name="teamName" placeholder="Enter your team name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Team Members (Enter Reg Numbers of Members):</label>
+                                <div id="members">
+                                    <input type="text" name="members[]" class="member-input"
+                                        placeholder="Reg No of Member 1" required>
+                                    <input type="text" name="members[]" class="member-input"
+                                        placeholder="Reg No of Member 2" required>
+                                </div>
+                                <button type="button" onclick="addMemberField()">+ Add Member</button>
+                                <p id="memberCountMsg" style="color: #666; font-size: 0.9rem;">Min 2, Max 4 members
+                                    (excluding you)</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Select Track:</label>
+                                <select name="track" required>
+                                    <option value="">-- Select Track --</option>
+                                    <option value="AI & ML">AI & ML</option>
+                                    <option value="Cybersecurity">Cybersecurity</option>
+                                    <option value="Sustainability">Sustainability</option>
+                                    <option value="Open Innovation">Open Innovation</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Idea Description:</label>
+                                <textarea name="idea" rows="4" required placeholder="Describe your idea..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Status:</label>
+                                <div id="team-status">Pending</div>
+                            </div>
+
+                            <button class="cta-button" type="submit">Create Team</button>
+                        </form>
+                    </div>
+                    <% } %>
+
+                        <!-- Container 2: Project Submission -->
+                        <% if (user.team) { %>
+                            <div class="dashboard-container">
+                                <h3>Final Project Submission</h3>
+                                <form id="projectForm" action="/submit-project" method="POST">
+                                    <div class="form-group">
+                                        <label>GitHub Repository URL:</label>
+                                        <input type="url" name="github"
+                                            placeholder="https://github.com/yourteam/project" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>LinkedIn Post URL:</label>
+                                        <input type="url" name="linkedin" placeholder="https://linkedin.com/..."
+                                            required />
+                                        <p style="font-size: 0.9rem; color: #555;">Make sure to tag
+                                            <strong>@BIS</strong> and the <strong>Standards Club</strong> in your
+                                            LinkedIn post.
+                                        </p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Google Sheet Link:</label>
+                                        <input type="url" name="document"
+                                            placeholder="Paste your shared Google Sheets URL" required />
+                                        <p style="font-size: 0.9rem; color: #555;">Ensure the link is public or set to
+                                            <strong>'Anyone with the link can view'</strong>.
+                                        </p>
+                                    </div>
+
+                                    <button type="submit" class="cta-button">Submit Final Project</button>
+                                </form>
+                            </div>
+                            <% } %>
+
+                                <script>
+                                    function addMemberField() {
+                                        const members = document.querySelectorAll('.member-input');
+                                        if (members.length >= 4) return alert("Maximum 4 additional members allowed (including you = 5 total).");
+                                        const input = document.createElement('input');
+                                        input.type = 'text';
+                                        input.name = 'members[]';
+                                        input.className = 'member-input';
+                                        input.placeholder = `Reg No of Member ${members.length + 1}`;
+                                        document.getElementById('members').appendChild(input);
+                                    }
+
+                                    function validateTeamSize() {
+                                        const members = document.querySelectorAll('.member-input');
+                                        if (members.length < 2) {
+                                            alert("Minimum 2 additional members required (3 including you).");
+                                            return false;
+                                        }
+                                        if (members.length > 4) {
+                                            alert("Maximum 4 additional members allowed (5 including you).");
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+                                </script>
+                                <script>
+                                    // Prevent user from navigating back after logout
+                                    if (window.history && window.history.pushState) {
+                                        window.history.pushState(null, "", window.location.href);
+                                        window.onpopstate = function () {
+                                            window.history.pushState(null, "", window.location.href);
+                                        };
+                                    }
+                                </script>
+
+</body>
+
+</html>

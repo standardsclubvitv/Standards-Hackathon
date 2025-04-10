@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VIT Signup</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style2.css">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+</head>
+
+<body>
+    <div class="section container">
+        <h2 class="section-title">Sign Up</h2>
+        <p class="section-subtitle">Register with your official VIT email</p>
+        <form action="/signup" method="POST" class="contact-form">
+            <% if (error) { %>
+                <p style="color: red;">
+                    <%= error %>
+                </p>
+                <% } %>
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Registration Number</label>
+                        <input type="text" name="regno" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required />
+                    </div>
+                    <div class="form-group">
+                        <label>VIT Email</label>
+                        <input type="email" name="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Hostel Block</label>
+                        <input type="text" name="hostelBlock" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select name="gender" required>
+                            <option value="">Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required />
+                    </div>
+                    <button type="submit" class="cta-button">Send OTP</button>
+                    <div id="loader" style="display: none; text-align: center; margin-top: 1rem;">
+                        <img src="/loader.gif" alt="Loading..." style="width: 40px; height: 40px;" />
+                        <p style="margin-top: 0.5rem;">Processing...</p>
+                    </div>
+        </form>
+        <!-- 👇 Signup redirect button -->
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <p>already have a account!!</p>
+            <a href="/login" class="cta-button" style="text-decoration: none;">Go to Login</a>
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    const form = document.querySelector("form");
+    const loader = document.getElementById("loader");
+
+    form.addEventListener("submit", () => {
+        loader.style.display = "block";
+    });
+</script>
+<script>
+    // Prevent user from navigating back after logout
+    if (window.history && window.history.pushState) {
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState(null, "", window.location.href);
+        };
+    }
+</script>
+
+</html>

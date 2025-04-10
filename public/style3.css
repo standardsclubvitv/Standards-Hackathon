@@ -1,0 +1,25 @@
+.container {
+    max-width: 600px;
+    margin: 5rem auto;
+    text-align: center;
+  }
+  
+  .container h1 {
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-button {
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  

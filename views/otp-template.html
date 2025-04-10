@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>OTP Verification</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #0050b3;
+      margin: 0;
+    }
+
+    .otp-box {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #1a73e8;
+      background-color: #e8f0fe;
+      padding: 20px;
+      margin: 30px auto;
+      border-radius: 6px;
+      letter-spacing: 4px;
+    }
+
+    .message {
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Standards Hackathon OTP</h1>
+    </div>
+    <p class="message">
+      Hello,<br><br>
+      Thank you for signing up for the Standards Hackathon!<br>
+      Use the following OTP to verify your email address and complete your registration:
+    </p>
+    <div class="otp-box">{{OTP}}</div>
+    <p class="message">
+      This OTP is valid for a limited time. Please do not share it with anyone.<br><br>
+      Good luck and see you at the Hackathon!
+    </p>
+    <div class="footer">
+      © Standards Hackathon Hackathon Team | For queries, contact us at
+    </div>
+  </div>
+</body>
+
+</html>

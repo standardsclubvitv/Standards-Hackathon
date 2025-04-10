@@ -1,0 +1,178 @@
+/* Admin Panel Styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .admin-header {
+    padding: 1.5rem 2rem;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    margin: 2rem auto 1rem;
+    max-width: 1200px;
+  }
+  
+  .admin-header h2 {
+    margin-bottom: 0.2rem;
+    font-size: 1.8rem;
+  }
+  
+  .admin-header p {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  .tab-buttons {
+    margin-top: 1rem;
+  }
+  
+  .tab-buttons button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #eee;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .tab-buttons .active {
+    background-color: #333;
+    color: white;
+  }
+  
+  .tab-content {
+    display: none;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1rem auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow-x: auto;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    vertical-align: top;
+    max-width: 200px;
+    overflow-wrap: break-word;
+  }
+  
+  th {
+    background: #f5f5f5;
+  }
+  
+  ul {
+    padding-left: 1rem;
+    margin: 0;
+  }
+  
+  input#searchInput {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    max-width: 350px;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .btn-action {
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin: 0.2rem 0;
+  }
+  
+  .btn-approve {
+    background: #28a745;
+    color: white;
+  }
+  
+  .btn-reject {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .status-box {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.85rem;
+  }
+  
+  .Approved {
+    background-color: green;
+  }
+  
+  .Rejected {
+    background-color: crimson;
+  }
+  
+  .Pending {
+    background-color: orange;
+  }
+  
+  /* Responsive Tables */
+  @media screen and (max-width: 768px) {
+    .tab-content {
+      padding: 1rem;
+    }
+  
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+  
+    thead {
+      display: none;
+    }
+  
+    tr {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    td {
+      padding-left: 50%;
+      position: relative;
+      text-align: left;
+      border: none;
+      border-bottom: 1px solid #eee;
+    }
+  
+    td::before {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #555;
+      content: attr(data-label);
+    }
+  }
+  

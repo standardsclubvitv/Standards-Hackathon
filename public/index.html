@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standards Hackathon - Gravitas 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style2.css">
+    <link rel="icon" type="image/png" href="./favicon.png" />
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>Standards Hackathon</span>
+        </a>
+        <div class="menu" id="menu">
+            <a href="#about" class="menu-link">About</a>
+            <a href="#schedule" class="menu-link">Schedule</a>
+            <a href="#tracks" class="menu-link">Tracks</a>
+            <a href="#prizes" class="menu-link">Prizes</a>
+            <a href="#contact" class="menu-link">Contact</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content animate__animated animate__fadeIn">
+            <div class="event-date">Gravitas 2025</div>
+            <h1 class="hero-title">Standards Hackathon</h1>
+            <h2 class="hero-subtitle">Innovating with Standards: Building a Compliant Future</h2>
+            <a href="/signup" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About The Event</h2>
+            <p class="section-subtitle">Organized by BIS Standards Club, VIT Vellore</p>
+
+            <div class="about-grid">
+                <div class="about-card" data-aos="fade-up">
+                    <i class="fas fa-calendar-alt about-icon"></i>
+                    <h3>48 Hours Challenge</h3>
+                    <p>A 48-hour hackathon (2 days, 2 nights) held at Anna Auditorium, VIT Vellore as part of Gravitas
+                        2025.</p>
+                </div>
+                <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-users about-icon"></i>
+                    <h3>Team Participation</h3>
+                    <p>Open to all VITians. Form teams of 3-5 members and register through VTOP.</p>
+                </div>
+                <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-lightbulb about-icon"></i>
+                    <h3>Objectives</h3>
+                    <p>Promote awareness of Indian Standards, foster interdisciplinary teamwork, and encourage
+                        tech-based compliance and safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="section section-dark" id="schedule">
+        <div class="container">
+            <h2 class="section-title">Event Schedule</h2>
+
+            <div class="schedule-container">
+                <div class="day-tabs">
+                    <div class="day-tab active" onclick="switchDay(1)">Day 1</div>
+                    <div class="day-tab" onclick="switchDay(2)">Day 2</div>
+                </div>
+
+                <div class="schedule-content active" id="day1">
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-time">08:00 AM - 09:00 AM</div>
+                            <div class="timeline-title">Registrations & Opening Ceremony</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                            <div class="timeline-time">09:00 AM - 10:00 AM</div>
+                            <div class="timeline-title">Problem Statements Released + Team Finalization</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                            <div class="timeline-time">10:00 AM - 01:00 PM</div>
+                            <div class="timeline-title">Development Begins</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                            <div class="timeline-time">01:00 PM - 02:00 PM</div>
+                            <div class="timeline-title">Lunch</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                            <div class="timeline-time">02:00 PM - 07:00 PM</div>
+                            <div class="timeline-title">Coding + Mentoring Rounds</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="500">
+                            <div class="timeline-time">07:00 PM - 08:00 PM</div>
+                            <div class="timeline-title">Dinner</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="600">
+                            <div class="timeline-time">08:00 PM - Overnight</div>
+                            <div class="timeline-title">Overnight Development Phase</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-content" id="day2">
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-time">08:00 AM - 01:00 PM</div>
+                            <div class="timeline-title">Final Development</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                            <div class="timeline-time">01:00 PM - 02:00 PM</div>
+                            <div class="timeline-title">Lunch</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                            <div class="timeline-time">02:00 PM - 05:00 PM</div>
+                            <div class="timeline-title">Final Submissions & Judging</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                            <div class="timeline-time">05:00 PM - 07:00 PM</div>
+                            <div class="timeline-title">Presentations & Jury Evaluation</div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                            <div class="timeline-time">07:00 PM - 08:00 PM</div>
+                            <div class="timeline-title">Awards & Closing Ceremony</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracks Section -->
+    <section class="section" id="tracks">
+        <div class="container">
+            <h2 class="section-title">Innovation Tracks</h2>
+            <p class="section-subtitle">Choose your domain and innovate with BIS standards</p>
+
+            <div class="tracks-container">
+                <div class="track-card" data-aos="zoom-in">
+                    <div class="track-header">
+                        <h3>Smart Infrastructure & Urban Tech</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>Use BIS civil/structural codes like IS 875 & IS 16700 to build smart, compliant
+                            infrastructure tools.</p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="track-header">
+                        <h3>Healthcare & Biomedical Standards</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>Medical devices, sanitation & hygiene tech using standards like IS 13450, IS 15700.</p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="track-header">
+                        <h3>Environmental Sustainability</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>Innovations around water, air, waste, and green systems – aligned with IS 10500, IS 5182.</p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="track-header">
+                        <h3>Consumer Safety & Product Quality</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>Verify labels, test product safety, or create alert systems using standards like IS 15700.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="track-header">
+                        <h3>Energy & Electrification</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>Battery, LED, solar system innovations with standards like IS 16046 and IS 16102.</p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="track-header">
+                        <h3>Digital Systems & Cybersecurity</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>AI ethics, secure systems & data compliance based on IS 17428 & ISO/IEC standards.</p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="track-header">
+                        <h3>Open Innovation (Wildcard)</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>For impactful ideas that don't fit a single domain but align with BIS principles.</p>
+                    </div>
+                </div>
+
+                <div class="track-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="track-header">
+                        <h3>Mechanical Systems & Manufacturing Standards</h3>
+                    </div>
+                    <div class="track-body">
+                        <p>Innovations in manufacturing, design, and automation based on IS 210, IS 2062, IS 10218, and
+                            other mechanical standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prizes Section -->
+    <section class="section section-dark" id="prizes">
+        <div class="container">
+            <h2 class="section-title">Prizes</h2>
+            <p class="section-subtitle">Total Prize Pool: ₹80,000</p>
+
+            <div class="prizes-container">
+                <div class="prize-card second" data-aos="flip-left" data-aos-delay="200">
+                    <div class="prize-position">2<sup>nd</sup></div>
+                    <div class="prize-amount">₹25,000</div>
+                    <div class="prize-medal"><i class="fas fa-medal"></i></div>
+                </div>
+
+                <div class="prize-card first" data-aos="flip-left">
+                    <div class="prize-position">1<sup>st</sup></div>
+                    <div class="prize-amount">₹40,000</div>
+                    <div class="prize-medal"><i class="fas fa-trophy"></i></div>
+                </div>
+
+                <div class="prize-card third" data-aos="flip-left" data-aos-delay="400">
+                    <div class="prize-position">3<sup>rd</sup></div>
+                    <div class="prize-amount">₹15,000</div>
+                    <div class="prize-medal"><i class="fas fa-award"></i></div>
+                </div>
+            </div>
+
+            <div class="prize-note">
+                <p>Sponsored by Bureau of Indian Standards (BIS), Chennai Chapter</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <i class="fas fa-user contact-icon"></i>
+                        <div>
+                            <h3>Event Coordinator</h3>
+                            <p>Pranav Rayban (Development Head, VIT Standards Club)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div>
+                            <h3>Venue</h3>
+                            <p>Anna Auditorium, VIT Vellore</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>standardsclub@vit.ac.in</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form" data-aos="fade-left">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="cta-button">Send Message</button>
+                        <p id="form-status" style="margin-top: 10px;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Standards Hackathon</span>
+                </div>
+
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#schedule">Schedule</a>
+                    <a href="#tracks">Tracks</a>
+                    <a href="#prizes">Prizes</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 BIS Standards Club, VIT Vellore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const res = await fetch('/send-message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    name: this.name.value,
+                    email: this.email.value,
+                    message: this.message.value
+                })
+            });
+
+            const text = await res.text();
+            document.getElementById("form-status").innerText = text;
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

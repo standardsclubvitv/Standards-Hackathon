@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style2.css" />
+    <link rel="stylesheet" href="/admin.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+</head>
+
+<body>
+    <div class="admin-header">
+        <h2>Admin Dashboard</h2>
+        <p>Hello, <%= user.email %> | <a href="/logout">Logout</a></p>
+        <div class="tab-buttons">
+            <button onclick="showTab('students')" class="active">Students Registered</button>
+            <button onclick="showTab('teams')">Team Submissions</button>
+        </div>
+    </div>
+
+    <!-- Students Tab -->
+    <div id="students" class="tab-content active">
+        <h3>Search Student by Reg No</h3>
+        <input type="text" id="searchInput" placeholder="Search reg no..." onkeyup="filterStudents()" />
+
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Reg No</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Hostel Block</th>
+                    <th>Team</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(u=> { %>
+                    <tr>
+                        <td>
+                            <%= u.name %>
+                        </td>
+                        <td>
+                            <%= u.regno %>
+                        </td>
+                        <td>
+                            <%= u.email %>
+                        </td>
+                        <td>
+                            <%= u.phone %>
+                        </td>
+                        <td>
+                            <%= u.gender %>
+                        </td>
+                        <td>
+                            <%= u.hostelBlock %>
+                        </td>
+                        <td>
+                            <%= u.team ? u.team.name : '—' %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Teams Tab -->
+    <div id="teams" class="tab-content">
+        <h3>Team Submissions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Track</th>
+                    <th>Idea</th>
+                    <th>Status</th>
+                    <th>Leader</th>
+                    <th>Members</th>
+                    <th>GitHub</th>
+                    <th>LinkedIn</th>
+                    <th>Google Sheet</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% teams.forEach(team=> { %>
+                    <tr>
+                        <td>
+                            <%= team.name %>
+                        </td>
+                        <td>
+                            <%= team.track %>
+                        </td>
+                        <td>
+                            <%= team.idea %>
+                        </td>
+                        <td><span class="status-box <%= team.status %>">
+                                <%= team.status %>
+                            </span></td>
+                        <td>
+                            <%= team.leader?.name %> (<%= team.leader?.regno %>)
+                        </td>
+                        <td>
+                            <ul>
+                                <% team.members.forEach(m=> { %>
+                                    <li>
+                                        <%= m.name %> (<%= m.regno %>)
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                        </td>
+                        <td>
+                            <% if (team.github) { %>
+                                <a href="<%= team.github %>" target="_blank">GitHub</a>
+                                <% } else { %>—<% } %>
+                        </td>
+                        <td>
+                            <% if (team.linkedin) { %>
+                                <a href="<%= team.linkedin %>" target="_blank">LinkedIn</a>
+                                <% } else { %>—<% } %>
+                        </td>
+                        <td>
+                            <% if (team.document) { %>
+                                <a href="<%= team.document %>" target="_blank">Google Sheet</a>
+                                <% } else { %>—<% } %>
+                        </td>
+                        <td>
+                            <% if (team.status==='Pending' ) { %>
+                                <form method="POST" action="/team/<%= team._id %>/approve" style="display:inline;">
+                                    <button class="btn-action btn-approve">Approve</button>
+                                </form>
+                                <form method="POST" action="/team/<%= team._id %>/reject" style="display:inline;">
+                                    <button class="btn-action btn-reject">Reject</button>
+                                </form>
+                                <% } else { %>
+                                    <em>N/A</em>
+                                    <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function filterStudents() {
+            const input = document.getElementById("searchInput").value.toUpperCase();
+            const rows = document.getElementById("studentTable").getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const regCell = rows[i].getElementsByTagName("td")[1];
+                if (regCell) {
+                    const regText = regCell.textContent || regCell.innerText;
+                    rows[i].style.display = regText.toUpperCase().indexOf(input) > -1 ? "" : "none";
+                }
+            }
+        }
+    </script>
+    <script>
+        // Prevent user from navigating back after logout
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+        }
+    </script>
+
+</body>
+
+</html>
