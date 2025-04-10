@@ -19,11 +19,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+const MongoStore = require('connect-mongo');
+
 app.use(session({
     secret: 'vit_secret_key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI
+    })
 }));
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
